@@ -5,6 +5,7 @@
 
 // Servo and Encoder
 Servo esc;  // create servo object to control the ESC
+Servo steeringServo;  // steering servo on pin 9
 MT6701 encoder;
 
 // PID Controller
@@ -12,6 +13,7 @@ ArduPID myController;
 
 // Pin definitions
 int pwmPin = 10;            // ESC input connected to digital pin 10
+int steeringServoPin = 9;   // Steering servo on digital pin 9
 const int button1 = 7;      // Button to toggle laser
 const int button2 = 4;      // Button to start/stop driving
 const int laser = 8;        // Laser control pin
@@ -57,8 +59,14 @@ void setup() {
   Wire.begin();
   encoder.initializeI2C();
   previousAngle = encoder.angleRead();
+  
+  // Attach and initialize servos
+  steeringServo.attach(steeringServoPin);
+  steeringServo.write(90);  // Set to middle position immediately
+  
   esc.attach(pwmPin);
   esc.writeMicroseconds(1500);  // Initialize ESC with 1ms pulse width
+  
   pinMode(button1, INPUT_PULLUP);  // Use the internal pull-up resistor
   pinMode(button2, INPUT_PULLUP);  // Use the internal pull-up resistor
   pinMode(laser, OUTPUT);
