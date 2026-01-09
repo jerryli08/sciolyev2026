@@ -24,7 +24,7 @@ int maxPulseWidth = 2000;   // Maximum pulse width (corresponding to maximum spe
 
 // Adjustable variables
 const float wheelDiameterInches = 2.875;                                      // Wheel diameter in inches
-const float gearRatio = 1.2;                                                  // Gear ratio (encoder to wheel)
+const float gearRatio = 6;                                                  // Gear ratio (encoder to wheel)
 const float wheelCircumference = wheelDiameterInches * 2.54 * 3.14159265359;  // Circumference of the wheel in centimeters
 const float targetDist = 888;  // target distance in centimeters
 const float overshoot = 0.0;  // overshoot compensation in centimeters
